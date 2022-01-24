@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/actions.js}"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div id="mainContainer">
+    <table id="mainTable">
+        <tr>
+            <th>Expense</th>
+            <th>Category</th>
+            <th>Amount</th>
+        </tr>
+        <tr>
+            <td><input type="text" placeholder="Expense Name" id="expenseNameTD"></td>
+            <td><input type="text" placeholder="Expense Category" id="expenseCategoryTD"></td>
+            <td><input type="number" placeholder="Amount" id="expenseAmountTD"></td>
+        </tr>
+
+    </table>
+</div>
+<div id="buttons-hbox">
+    <button type="button" th:onclick="removeRow()">Remove Row</button>
+    <button type="button" th:onclick="addRow()">Add Row</button>
+</div>
+<button type="button" th:onclick="calcBudget()">Calculate Budget</button>
+<div>
+    <table>
+        <tr th:each="result : ${entries}">
+            <td th:text="${result.key}">1</td>
+            <td th:text="${result.value}">Title ...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
