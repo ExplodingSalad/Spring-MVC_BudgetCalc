@@ -1,4 +1,7 @@
 function calcBudget() {
+
+    clearResultArea();
+
     const table = document.getElementById("mainTable");
     const jsonBody = [];
 
@@ -14,22 +17,43 @@ function calcBudget() {
 
     $.ajax({
         'type': 'POST',
-        'url': '/home',
+        'url': '/api/results',
         'contentType': 'application/json',
         'data': JSON.stringify(jsonBody),
         'success': function(response)
         {
-            console.log(response);
-            // redirect browser to new location
-            $("body").html(response);
+            displayResponse(response);
         },
         'error': function(xhr, status, error)
         {
-            console.log('Error on saving appointment:', xhr, status, error);
-            // display error message to the user
+            console.log('Error on submitting API request:', xhr, status, error);
         }
     });
 
+}
+
+function displayResponse(response) {
+
+    const resultArea = document.getElementById("resultArea"), tbl = document.createElement('table'), title = document.createTextNode("Result");
+
+    let map = new Map(Object.entries(response));
+
+    console.log(map);
+
+    for (let i = 0; i < map.size; i++) {
+        const tr = tbl.insertRow();
+        const td = tr.insertCell();
+        td.appendChild(document.createTextNode(Array.from(map.keys())[i]));
+        td.appendChild(document.createTextNode(map.get(Array.from(map.keys())[i])));
+    }
+
+    resultArea.appendChild(title);
+    resultArea.appendChild(tbl);
+}
+
+function clearResultArea() {
+    let resultArea = document.getElementById("resultArea");
+    resultArea.innerHTML = '';
 }
 
 function removeRow() {
