@@ -12,11 +12,14 @@
 <body>
 <div id="mainContainer">
     <table id="mainTable">
-        <tr>
-            <th>Expense</th>
-            <th>Category</th>
-            <th>Amount</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Expense</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+
         <tr>
             <td><input type="text" placeholder="Expense Name" id="expenseNameTD"></td>
             <td><input type="text" placeholder="Expense Category" id="expenseCategoryTD"></td>
@@ -30,13 +33,9 @@
     <button type="button" th:onclick="addRow()">Add Row</button>
 </div>
 <button type="button" th:onclick="calcBudget()">Calculate Budget</button>
-<div>
-    <table>
-        <tr th:each="result : ${entries}">
-            <td th:text="${result.key}">1</td>
-            <td th:text="${result.value}">Title ...</td>
-        </tr>
-    </table>
+
+<div id="resultArea">
 </div>
+
 </body>
 </html>
