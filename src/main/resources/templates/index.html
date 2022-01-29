@@ -1,23 +1,35 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Simple Budget Calculator</title>
 
-    <link th:href="@{/styles.css}" rel="stylesheet"/>
-    <script type="text/javascript" th:src="@{/actions.js}"></script>
+     <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
+<!--    <link rel="stylesheet" href="/Users/jan/IdeaProjects/BudgetCalcWebApp/src/main/resources/static/css/index.css">-->
+     <script type="text/javascript" th:src="@{/actions.js}"></script>
+<!--    <script type="text/javascript" src="/Users/jan/IdeaProjects/BudgetCalcWebApp/src/main/resources/static/actions.js"></script>-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 </head>
+
 <body>
-<div id="mainContainer">
+
+<div class="mainContainer">
+    <a class="titles"> Calculator </a>
+    <div class="text">
+      <a>Insert your expenses and allocate them to categories.
+        Then click "Calculate Budget" and an overview will appear showing
+        expenses grouped by categories and the total expenses</a>
+    </div>
+
     <table id="mainTable">
         <thead>
-            <tr>
-                <th>Expense</th>
-                <th>Category</th>
-                <th>Amount</th>
-            </tr>
+        <tr>
+            <th>Expense</th>
+            <th>Category</th>
+            <th>Amount</th>
+        </tr>
         </thead>
 
         <tr>
@@ -27,14 +39,19 @@
         </tr>
 
     </table>
-</div>
-<div id="buttons-hbox">
-    <button type="button" th:onclick="removeRow()">Remove Row</button>
-    <button type="button" th:onclick="addRow()">Add Row</button>
-</div>
-<button type="button" th:onclick="calcBudget()">Calculate Budget</button>
+    <div class="buttonsContainer">
+        <div id="buttons-hbox">
+            <button type="button" onclick="removeRow()">Remove Row</button>
+            <button type="button" onclick="addRow()">Add Row</button>
+        </div>
+        <div id="buttons-result">
+            <button type="button" onclick="calcBudget()">Calculate Budget</button>
+        </div>
 
-<div id="resultArea">
+    </div>
+</div>
+
+<div class="resultArea" id="resultContainer" style="visibility: hidden">
 </div>
 
 </body>
