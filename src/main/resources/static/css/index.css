@@ -113,8 +113,8 @@ tr:last-of-type td:last-of-type {
   border-bottom-right-radius: 10px;
 }
 
-
-/** copied from internet */
+/** table customization & responsiveness
+    adapted source https://codepen.io/AllThingsSmitty/pen/MyqmdM */
 table {
   border-radius: 5px;
   border-collapse: collapse;
@@ -146,7 +146,6 @@ table th {
   font-size: 1.4em;
   letter-spacing: .1em;
   text-transform: uppercase;
-
 }
 
 @media screen and (max-width: 600px) {

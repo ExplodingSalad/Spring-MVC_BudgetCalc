@@ -5,8 +5,6 @@ function calcBudget() {
     const table = document.getElementById("mainTable");
     const jsonBody = [];
 
-    //TODO: handle null values
-
     for (let i = 1; i < table.rows.length; i++) {
         const jsonItem = {};
 
@@ -36,26 +34,43 @@ function sendAPIRequest(jsonBody) {
     });
 }
 
+// this method needs some serious rework lol
 function displayResponse(response) {
 
-    const resultArea = document.getElementById("resultContainer"), tbl = document.createElement("table"), title = document.createElement("a");
+    const resultArea = document.getElementById("resultContainer"),
+        tbl = document.createElement("table"),
+        tblHead = document.createElement("thead"),
+        tblBody = document.createElement("tbody"),
+        title = document.createElement("a");
     tbl.id = "resultTable";
     title.text = "Result";
     title.className = "titles";
 
     let map = new Map(Object.entries(response));
 
-    const th = tbl.insertRow();
-    const thd = th.insertCell();
-    thd.appendChild(document.createTextNode("Category"));
-    thd.appendChild(document.createTextNode("Amount"));
+    /** Create Header Row **/
+    const tblHeadRow = tblHead.insertRow();
+    const tblHeadRowCell1 = document.createElement("th");
+    const tblHeadRowCell2 = document.createElement("th");
+    tblHeadRow.append(tblHeadRowCell1, tblHeadRowCell2);
+    tblHeadRowCell1.appendChild(document.createTextNode("Category"));
+    tblHeadRowCell2.appendChild(document.createTextNode("Amount"));
 
+    /** Insert Dynamic table rows in the table body */
     for (let i = 0; i < map.size; i++) {
-        const tr = tbl.insertRow();
-        const td = tr.insertCell();
-        td.appendChild(document.createTextNode(Array.from(map.keys())[i]));
-        td.appendChild(document.createTextNode(map.get(Array.from(map.keys())[i])));
+        const tr = tblBody.insertRow();
+        for (let j = 0; j < 2; j++) {
+            const td = tr.insertCell();
+            if (j === 0) {
+                td.appendChild(document.createTextNode(Array.from(map.keys())[i]));
+            } else if (j === 1) {
+                td.appendChild(document.createTextNode(map.get(Array.from(map.keys())[i])));
+            }
+        }
     }
+    tbl.appendChild(tblHead);
+    tbl.appendChild(tblBody);
+
     resultArea.appendChild(title);
     resultArea.appendChild(tbl);
     resultArea.style.visibility = 'visible';
@@ -109,11 +124,4 @@ function addRow() {
     element3.type = "number";
     element3.placeholder = "Amount"
     cell3.appendChild(element3);
-}
-
-function reloadStylesheets() {
-    let queryString = '?reload=' + new Date().getTime();
-    $('link[rel="stylesheet"]').each(function () {
-        this.href = this.href.replace(/\?.*|$/, queryString);
-    });
 }

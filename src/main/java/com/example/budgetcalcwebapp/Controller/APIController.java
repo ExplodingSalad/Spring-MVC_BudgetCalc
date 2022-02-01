@@ -1,6 +1,7 @@
-package com.example.budgetcalcwebapp;
+package com.example.budgetcalcwebapp.Controller;
 
-import org.json.JSONObject;
+import com.example.budgetcalcwebapp.DataModel.CalcModel;
+import com.example.budgetcalcwebapp.Service.CalcService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,14 +18,15 @@ import java.util.Map;
 @RequestMapping(("/api"))
 public class APIController {
 
-    final CalcModel calcModel;
+    final CalcService calcService;
 
-    public APIController(CalcModel calcModel) {
-        this.calcModel = calcModel;
+    public APIController(CalcService calcService) {
+        this.calcService = calcService;
     }
 
+    // POST endpoint accepting an array of CalcModel objects, returning a grouped summary to the frontend
     @RequestMapping(value = "/results", method = RequestMethod.POST)
     public Map createCalcOutput(@RequestBody(required = false) ArrayList<CalcModel> data) {
-        return calcModel.computeResponseMap(data);
+        return calcService.computeResponseMap(data);
     }
 }
