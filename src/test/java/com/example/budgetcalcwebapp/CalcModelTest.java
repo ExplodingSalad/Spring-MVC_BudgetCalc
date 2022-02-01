@@ -4,41 +4,36 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CalcModelTest {
 
-    CalcModel calcModel;
-
-    @BeforeEach
-    void setUp() {
-        calcModel = new CalcModel();
-    }
-
-    @Test
-    void testComputeResponseMap() {
-
-        CalcModel calcModel1 = new CalcModel();
-        calcModel1.category = "Category 1";
-        calcModel1.amount = 100.0;
-
-        CalcModel calcModel2 = new CalcModel();
-        calcModel2.category = "Category 1";
-        calcModel2.amount = 100.0;
-
-        CalcModel calcModel3 = new CalcModel();
-        calcModel3.category = "Category 2";
-        calcModel3.amount = 100.0;
-
-        ArrayList<CalcModel> arrayList = new ArrayList<>();
-        arrayList.add(calcModel1);
-        arrayList.add(calcModel2);
-        arrayList.add(calcModel3);
-
-        System.out.println(calcModel.computeResponseMap(arrayList));
-    }
+//    CalcService calcService;
+//
+//    @BeforeEach
+//    void setUp() {
+//        calcService = new CalcService(calcModel);
+//    }
+//
+//    @Test
+//    void testComputeResponseMap() {
+//
+//        CalcService calcService1 = new CalcService(calcModel);
+//        calcService1.category = "Category 1";
+//        calcService1.amount = 100.0;
+//
+//        CalcService calcService2 = new CalcService(calcModel);
+//        calcService2.category = "Category 1";
+//        calcService2.amount = 100.0;
+//
+//        CalcService calcService3 = new CalcService(calcModel);
+//        calcService3.category = "Category 2";
+//        calcService3.amount = 100.0;
+//
+//        ArrayList<CalcService> arrayList = new ArrayList<>();
+//        arrayList.add(calcService1);
+//        arrayList.add(calcService2);
+//        arrayList.add(calcService3);
+//
+//        System.out.println(calcService.computeResponseMap(arrayList));
+//    }
 }
