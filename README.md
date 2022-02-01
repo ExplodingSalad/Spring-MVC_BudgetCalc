@@ -9,8 +9,7 @@ Disclaimer: This project is still in development and nowhere near finished :)
 
 ---
 Improvements to do:
-- Animations
 - Refactor js code
 - General CSS improvements
 - Improved Error Handling Server-Side
-- Let user input a salary and show difference
+
